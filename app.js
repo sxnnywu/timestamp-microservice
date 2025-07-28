@@ -9,33 +9,34 @@ app.get('/', (req, res) => {
 // api endpoint
 app.get('/api/:date?', (req, res) => {
 
-    const dataParam = req.params.date;
-    let date;
+    const { date } = req.params;
+    let parsedDate;
 
-    // if user didn't provide a date, use current data
-    if(!dataParam){
-        date = new Date();
-        res.json({
-            unix: date.getTime(),
-            utc: date.toUTCString()
-        });
+    // if no date, use current data
+    if(!data){
+        parsedDate = new Date();
     }
     
-    // if user provided a valid date, parse + return JSON w/ unix + utc date
-    else if (!isNaN(dataParam)){
-        date = new Date(parseInt(dataParam));
-        res.json({
-            unix: date.getTime(),
-            utc: date.toUTCString()
-        });
+    // if numerical date, treat as UNIX timestamp
+    else if (!isNaN(data)){
+        parsedDate = new Date(parseInt(date));
+    }
+    // if valid date string, parse it
+    else {
+        parsedDate = new Date(date);
     }
 
     // if date is invalid, respond with error
-    else {
-        res.json({
+    if(parsedDate.toString() === 'Invalid Date') {
+        return res.json({
             error: "Invalid Date"
         });
     }
+
+    return res.json({
+        unix: parsedDate.getTime(),
+        utc: parsedDate.toUTCString()
+    })
 });
 
 // export the app

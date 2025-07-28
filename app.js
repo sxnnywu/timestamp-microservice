@@ -36,8 +36,7 @@ app.get('/api/:date?', (req, res) => {
             error: "Invalid Date"
         });
     }
+});
 
-    // export the app
-    module.exports = app;
-    
-})
+// export the app
+module.exports = app;

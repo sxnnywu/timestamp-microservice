@@ -1,5 +1,5 @@
 // import express app
-require('./app');
+const app = require('./app');
 
 // start the server
 app.listen(3000, () => {

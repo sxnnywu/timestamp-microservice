@@ -18,7 +18,7 @@ app.get('/api/:date?', (req, res) => {
     }
     
     // if numerical date, treat as UNIX timestamp
-    else if (!isNaN(dateParam)){
+    else if (!isNaN(Number(dateParam))){
         date = new Date(parseInt(dateParam));
     }
     // if valid date string, parse it

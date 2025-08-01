@@ -2,7 +2,7 @@
 const app = require('express')();
 
 const cors = require('cors');
-app.use(cos({ optionsSuccessStatus: 200 }));
+app.use(cors({ optionsSuccessStatus: 200 }));
 
 // root endpoint
 app.get('/', (req, res) => {

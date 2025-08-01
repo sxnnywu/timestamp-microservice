@@ -12,6 +12,10 @@ app.get('/api/:date?', (req, res) => {
     const { date } = req.params;
     let parsedDate;
 
+    console.log("Parsed input: ", date);
+    console.log("Final date object: " + parsedDate);
+    console.log("UTC string: " + parsedDate?.toUTCString());
+
     // if no date, use current data
     if(!data){
         parsedDate = new Date();

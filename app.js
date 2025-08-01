@@ -1,6 +1,9 @@
 // create express app
 const app = require('express')();
 
+const cors = require('cors');
+app.use(cos({ optionsSuccessStatus: 200 }));
+
 // root endpoint
 app.get('/', (req, res) => {
   res.send('Hello, World!');
@@ -37,6 +40,11 @@ app.get('/api/:date?', (req, res) => {
         unix: date.getTime(),
         utc: date.toUTCString()
     })
+});
+
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+    console.log(`Listening on port ${port}`);
 });
 
 // export the app
